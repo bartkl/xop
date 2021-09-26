@@ -1,3 +1,14 @@
+""" Processor of XML Infoset which generates a XOP package in a way
+inspired by SOAP UI.
+
+The elements to optimize are expected to have `cid:<CID>` as text,
+and the binary content is passed to the processor as well, where
+the content IDs match.
+
+The only processing done, therefore, is the replacing of the node
+by a XOP include element.
+"""
+
 from typing import List
 
 from lxml import etree
@@ -5,7 +16,7 @@ from lxml import etree
 from ..datatypes import BinaryContent, XmlInfoset, XopPackage
 
 
-def _replace_element_with_xop_include(element: etree._Element, cid) -> None:
+def _replace_element_with_xop_include(element: etree._Element, cid: str) -> None:
     xop_include_el = etree.Element(
         "{http://www.w3.org/2004/08/xop/include}Include", href=f"cid:{cid}"
     )
@@ -20,7 +31,6 @@ def optimize_content(
 ) -> XopPackage:
     elements_to_optimize = find_elements_to_optimize(original_xml_infoset)
     for element in elements_to_optimize:
-        print(element.text)
         try:
             _, cid = element.text.split("cid:")
         except ValueError:
