@@ -33,7 +33,7 @@ def _serialize_xop_document_to_mime(xop_document: str, cid: str) -> MIMEApplicat
 
 
 def serialize_to_mime(
-    xop_pkg: XopPackage, xop_doc_cid: Optional[str] = "<xop-document>"
+    xop_pkg: XopPackage, xop_doc_cid: Optional[str] = "xop-document"
 ) -> MIMEMultipart:
     mime_multipart_message = MIMEMultipart(
         "related",
