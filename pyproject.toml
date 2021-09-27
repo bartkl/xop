@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "xop"
 description = "XOP optimization for XML Infosets."
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Bart Kleijngeld <bartkl@gmail.com>"]
 readme = "README.md"
 
