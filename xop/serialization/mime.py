@@ -39,7 +39,7 @@ def serialize(
         "related",
         boundary="MIME_boundary",
         type="application/xop+xml",
-        start=xop_doc_cid,
+        start=f"<{xop_doc_cid}>",
         start_info="text/xml",
     )
 
